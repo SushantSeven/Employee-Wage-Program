@@ -4,49 +4,45 @@ import random
 class Employee_wage:
     
 # init method to initialize the class variables
-    def __init__(self):
-        
-        self.wage = 20
+    def __init__(self):    
         self.hours = 8
 
 # function to check the attendance of an employee
     def check_attendance(self):  
         check_attd = random.randint(0,2)
         return check_attd
-
-# function to calculate the daily wage of an employee       
-    def calculate_daily_wage(self):
+    
+# function to calculate the daily wage of an employee
+    def calculate_daily_wage(self, per_day_wage):
         full_day = half_day = absent = total_hours= 0
         presence = self.check_attendance()
         match presence:
             case 0:
-                total_wage = self.wage * self.hours
+                total_wage = per_day_wage * self.hours
                 full_day = 1
                 total_hours = self.hours
             case 1:
-                total_wage = self.wage * (self.hours/2)
+                total_wage = per_day_wage * (self.hours/2)
                 half_day = 1
                 total_hours = self.hours//2
             case 2:
                 total_wage = 0
                 absent = 1
-        return full_day, half_day, absent, full_day+half_day, total_hours, total_wage
+        return full_day+half_day, total_hours, total_wage
 
 # function to calculate the monthly wage of an employee for either 20 days or 100 hours
-    def calculate_monthly_wage(self):
-        no_of_days = total_working_hrs = total_full_days = total_half_days = total_absent_days = total_monthly_wage = 0
-        while no_of_days < 20 and total_working_hrs < 100:
-            temp = self.calculate_daily_wage()
-            total_full_days += temp[0]
-            total_half_days += temp[1]
-            total_absent_days += temp[2]
-            no_of_days += temp[3]
-            total_working_hrs += temp[4]
-            total_monthly_wage += temp[5]
+    def calculate_monthly_wage(self, total_working_days, total_working_hrs, per_day_wage):
+        t_w_d = t_w_h = total_monthly_wage = 0
+        while t_w_d < total_working_days and t_w_h < total_working_hrs:
+            temp = self.calculate_daily_wage(per_day_wage)
+            t_w_d += temp[0]
+            t_w_h += temp[1]
+            total_monthly_wage += temp[2]
     
-        return total_full_days, total_half_days, total_absent_days, no_of_days,total_working_hrs, total_monthly_wage
+        return t_w_d, t_w_h, total_monthly_wage
 
 
 if __name__=="__main__":
-    employee_1 = Employee_wage().calculate_monthly_wage() # intance of the Employee_wage class is created and function to calculate monthly wage is called
-    print(f"\nTotal number of full days: {employee_1[0]}\n\nTotal number of half days: {employee_1[1]}\n\nTotal number of absent days: {employee_1[2]}\n\nTotal number of working days {employee_1[3]}\n\nTotal working hours: {employee_1[4]}\n\nThe total wage for the month is Rs.{employee_1[5]}/-\n")
+    employee_1 = Employee_wage().calculate_monthly_wage(20, 100, 200) # instnce of Employee class is made and monthly working hours, working days and wage per day is passed to the calculate_monthly_wage method according to a specific company
+    print(f"\nNumber of working days of employee: {employee_1[0]} days\n\nNumber of working hours: {employee_1[1]} hrs\n\nMonthly wage: Rs.{employee_1[2]}\n")
+   
