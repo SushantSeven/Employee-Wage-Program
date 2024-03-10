@@ -27,8 +27,12 @@ def calculate_daily_wage():
             total_wage = 0
      
     return presence[0] , str(total_wage)  # the total wage and whether the employee is present of absent
-       
 
-if __name__=="__main__":
+# main method        
+def main():
     result = calculate_daily_wage()
     print(f"\n{result[0]} \n\nThe total wage for the day is Rs.{result[1]}/-\n")
+
+if __name__=="__main__":
+    main()
+  
