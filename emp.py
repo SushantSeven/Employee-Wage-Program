@@ -38,7 +38,12 @@ def calculate_monthly_wage():
        
     return total_full_days, total_half_days, total_absent_days, total_monthly_wage # returns a tuple containing total full days, half days, absent days and monthly wage
 
-if __name__=="__main__":
+# main method
+def main():
     result = calculate_monthly_wage()
     print(f"\nTotal number of full days: {result[0]}\n\nTotal number of half days: {result[1]}\n\nTotal number of absent days: {result[2]}\n\nThe total wage for the month is Rs.{result[3]}/-\n")
 
+    
+if __name__=="__main__":
+    main()
+    
