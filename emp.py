@@ -12,9 +12,14 @@ def calculate_daily_wage(check_att):
     hrs = 8
     return f"The wage of employee is {wage*hrs}Rs. " if check_att == 1 else f"The wage of employee is 0 Rs. "
 
-
-if __name__=="__main__":
+def main():
     result = check_attendance()
     print("\n".join(result))
+
+
+
+if __name__=="__main__":
+    main()
+    
     
                     
