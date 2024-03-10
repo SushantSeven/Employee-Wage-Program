@@ -41,8 +41,15 @@ class Employee_wage:
     
         return t_w_d, t_w_h, total_monthly_wage
 
+# main method
+def main():
+    total_working_days = int(input("\nEnter the total number of working days: "))
+    total_working_hrs = int(input("\nEnter the total number of working hours: "))
+    per_day_wage = int(input("\nEnter the per day wage: "))
+    employee_1 = Employee_wage().calculate_monthly_wage(total_working_days, total_working_hrs, per_day_wage) # instnce of Employee class is made and monthly working hours, working days and wage per day is passed to the calculate_monthly_wage method according to a specific company
+    print(f"\nNumber of working days of employee: {employee_1[0]} days\n\nNumber of working hours: {employee_1[1]} hrs\n\nMonthly wage: Rs.{employee_1[2]}\n")
+
 
 if __name__=="__main__":
-    employee_1 = Employee_wage().calculate_monthly_wage(20, 100, 200) # instnce of Employee class is made and monthly working hours, working days and wage per day is passed to the calculate_monthly_wage method according to a specific company
-    print(f"\nNumber of working days of employee: {employee_1[0]} days\n\nNumber of working hours: {employee_1[1]} hrs\n\nMonthly wage: Rs.{employee_1[2]}\n")
+    main()
    
